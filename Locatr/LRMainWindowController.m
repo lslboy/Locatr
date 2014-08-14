@@ -102,6 +102,9 @@
         button;
     });
 
+#if  __MAC_OS_X_VERSION_MAX_ALLOWED < 101000
+#error Use 10.10 SDK to compile this code
+#endif
     if (NSClassFromString(@"NSTitlebarAccessoryViewController")) {
         /* 10.10+, use new NSWindow API */
         LRTitlebarAccessoryViewController *accessoryViewController = [[LRTitlebarAccessoryViewController alloc] init];
