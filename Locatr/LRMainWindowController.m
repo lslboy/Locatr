@@ -107,7 +107,7 @@
 #endif
     if (NSClassFromString(@"NSTitlebarAccessoryViewController")) {
         /* 10.10+, use new NSWindow API */
-        LRTitlebarAccessoryViewController *accessoryViewController = [[LRTitlebarAccessoryViewController alloc] init];
+        LRTitlebarAccessoryViewController *accessoryViewController = [LRTitlebarAccessoryViewController new];
         accessoryViewController.lr_view = toggleAddApplicationPopoverButton;
         accessoryViewController.layoutAttribute = NSLayoutAttributeRight;
         [self.window addTitlebarAccessoryViewController: accessoryViewController];

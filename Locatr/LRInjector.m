@@ -37,7 +37,7 @@ static NSString * const LRInjectionLocatrDisableNotification =
     static LRInjector *injector = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        injector = [[[self class] alloc] init];
+        injector = [[self class] new];
         injector.injectees = [NSMutableArray new];
         injector.pendingInjectees = [NSMutableArray new];
 
