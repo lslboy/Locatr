@@ -79,7 +79,7 @@
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <menu key="submenu" title="File" id="bib-Uj-vzu">
                         <items>
-                            <menuItem title="Add application…" keyEquivalent="n" id="mb6-as-rjV">
+                            <menuItem title="[add_app]" keyEquivalent="n" id="mb6-as-rjV">
                                 <connections>
                                     <action selector="addApplicationToList:" target="yQn-UN-PCN" id="ion-CH-Oen"/>
                                 </connections>
