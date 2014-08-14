@@ -107,9 +107,9 @@
         [self.popover performClose: self];
     } else {
         [self.popover showRelativeToRect: sender.frame ofView: sender preferredEdge: NSMinYEdge];
+        [self.inputTextField selectText: nil];
+        [self verifyBackToPreviousLocationButton];
     }
-
-    [self verifyBackToPreviousLocationButton];
 }
 
 - (IBAction)lookupNewLocation: (NSTextField *)sender
