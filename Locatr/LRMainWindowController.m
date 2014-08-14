@@ -41,7 +41,7 @@
 
 #pragma mark - UI Actions
 
-- (IBAction)addApplicationToList: (NSButton *)sender
+- (IBAction)addApplicationToList: (id)sender
 {
     static BOOL openPanelIsShown = NO;
     if (openPanelIsShown) {
