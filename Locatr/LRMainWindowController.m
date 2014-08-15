@@ -41,7 +41,7 @@
 
 #pragma mark - UI Actions
 
-- (IBAction)addApplicationToList: (NSButton *)sender
+- (IBAction)addApplicationToList: (id)sender
 {
     static BOOL openPanelIsShown = NO;
     if (openPanelIsShown) {
@@ -102,9 +102,12 @@
         button;
     });
 
+#if  __MAC_OS_X_VERSION_MAX_ALLOWED < 101000
+#error Use 10.10 SDK to compile this code
+#endif
     if (NSClassFromString(@"NSTitlebarAccessoryViewController")) {
         /* 10.10+, use new NSWindow API */
-        LRTitlebarAccessoryViewController *accessoryViewController = [[LRTitlebarAccessoryViewController alloc] init];
+        LRTitlebarAccessoryViewController *accessoryViewController = [LRTitlebarAccessoryViewController new];
         accessoryViewController.lr_view = toggleAddApplicationPopoverButton;
         accessoryViewController.layoutAttribute = NSLayoutAttributeRight;
         [self.window addTitlebarAccessoryViewController: accessoryViewController];

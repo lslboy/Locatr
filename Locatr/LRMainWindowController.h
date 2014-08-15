@@ -15,6 +15,6 @@
 @property (weak) IBOutlet NSButton *buttomLocationButton;
 @property (strong) IBOutlet LRAppsListManager *appsListManager;
 
-- (IBAction)addApplicationToList: (NSButton *)sender;
+- (IBAction)addApplicationToList: (id)sender;
 
 @end
