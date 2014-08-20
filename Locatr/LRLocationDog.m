@@ -45,11 +45,14 @@ NSString * const LRLocationDidChangeNotification = @"LRLocationDidChangeNotifica
 {
     if ((self = [super init])) {
         _geocoder = [CLGeocoder new];
-        _originalLocationManager = [CLLocationManager new];
-        _originalLocationManager.distanceFilter = kCLDistanceFilterNone;
-        _originalLocationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation;
-        [_originalLocationManager setDelegate: self];
-        [_originalLocationManager startUpdatingLocation];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self->_originalLocationManager = [CLLocationManager new];
+            self->_originalLocationManager.distanceFilter = kCLDistanceFilterNone;
+            self->_originalLocationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation;
+            [self->_originalLocationManager setDelegate: self];
+            [self->_originalLocationManager startUpdatingLocation];
+        });
+
         _callbacksQueue = dispatch_queue_create(kLocationDogCallbacksQueueLabel,
                                                 DISPATCH_QUEUE_SERIAL);
         _locationHistory = [NSMutableArray new];
