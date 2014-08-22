@@ -25,8 +25,10 @@
 
 - (void)awakeFromNib
 {
-    /* Force using Light Content appearance for the popover */
+#if (__MAC_OS_X_VERSION_MAX_ALLOWED < 101000)
+    /* Force using Light Content appearance for the popover on pre-10.10*/
     [self fixNSPopoverWindowAppearance];
+#endif
     /* Check availability of Location Services and disable action elements
      * if it's not enabled */
     __weak typeof(self) welf = self;
