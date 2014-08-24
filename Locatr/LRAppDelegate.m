@@ -7,6 +7,7 @@
 //
 
 #import "LRAppDelegate.h"
+#import "LRAppsListManager.h"
 #import "LRMainWindowController.h"
 
 
@@ -28,6 +29,11 @@
 - (BOOL)applicationShouldTerminateAfterLastWindowClosed:(NSApplication *)sender
 {
     return NO;
+}
+
+- (void)applicationWillTerminate: (NSNotification *)notification
+{
+    [self.mainWindowController.appsListManager disableAllLocationChanges];
 }
 
 - (void)applicationDidBecomeActive: (NSNotification *)notification

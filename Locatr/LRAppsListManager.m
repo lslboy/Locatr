@@ -78,6 +78,14 @@ static NSString * const LRApplicationsListDefaulsKey = @"LRApplicationsListDefau
     });
 }
 
+- (void)disableAllLocationChanges
+{
+    [self saveApplicationsList];
+    [self.applications enumerateObjectsUsingBlock: ^(LRApplicationModel *model, NSUInteger idx, BOOL *stop) {
+        [[LRInjector sharedInjector] disableInjectionForApplication: model];
+    }];
+}
+
 #pragma mark - UI Actions
 
 - (IBAction)toggleSwitch: (id)sender

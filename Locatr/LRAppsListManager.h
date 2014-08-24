@@ -16,6 +16,7 @@
 
 @property (strong) IBOutlet LRMenuEnabledTableView *tableView;
 
+- (void)disableAllLocationChanges;
 - (void)addApplicationsWithURL: (NSArray *)urls;
 - (IBAction)toggleSwitch: (id)sender;
 
