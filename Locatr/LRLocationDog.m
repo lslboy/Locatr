@@ -57,7 +57,7 @@ NSString * const LRLocationDidChangeNotification = @"LRLocationDidChangeNotifica
                                                 DISPATCH_QUEUE_SERIAL);
         _locationHistory = [NSMutableArray new];
 
-        // (Try to) turn Location Services on for this application
+        /* (Try to) turn Location Services on for this application */
         [CLLocationManager locationServicesEnabled];
     }
 
@@ -92,7 +92,7 @@ NSString * const LRLocationDidChangeNotification = @"LRLocationDidChangeNotifica
         }
     }
     if (status == kCLAuthorizationStatusNotDetermined) {
-        /* Trigger Location Services deamon to promt user a dialog */
+        /* Force Location Services deamon to promt user an authorization dialog */
         [self.originalLocationManager stopUpdatingLocation];
         [self.originalLocationManager startUpdatingLocation];
     }
@@ -113,8 +113,6 @@ NSString * const LRLocationDidChangeNotification = @"LRLocationDidChangeNotifica
                  if (failure) failure(error);
              });
          } else {
-             /* We probably should store all the suggested placemarks and allow
-              * user to select which one to apply */
              CLPlacemark *placemark = placemarks[0];
              strongSelf.currentLocation = placemark.location;
              /* Push current location into the history stack */
@@ -160,7 +158,7 @@ NSString * const LRLocationDidChangeNotification = @"LRLocationDidChangeNotifica
                                       failure: (LRLocationDogFailureCallback)failure
 {
     if (self.locationHistory.count == 0) {
-        success();
+        if (success) success();
         return;
     }
     /* Pop current history stack item out */

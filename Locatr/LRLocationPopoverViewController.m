@@ -5,23 +5,11 @@
 //  Created by Dmitry Rodionov on 02.08.14.
 //  Copyright (c) 2014 rodionovd. All rights reserved.
 //
-#include <CoreLocation/CLError.h>
+@import CoreLocation;
 #import "LRLocationPopoverViewController.h"
 #import "LRLocationDog.h"
 
-@interface LRLocationPopoverViewController ()
-@end
-
 @implementation LRLocationPopoverViewController
-
-- (instancetype)init
-{
-    if ((self = [super init])) {
-        
-    }
-
-    return self;
-}
 
 - (void)awakeFromNib
 {

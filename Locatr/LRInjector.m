@@ -102,7 +102,7 @@ static NSString * const LRInjectionLocatrDisableNotification =
         assert(application);
         return;
     }
-    if ( ! [self.pendingInjectees containsObject: application.bundleIdentifier]) {
+    if (![self.pendingInjectees containsObject: application.bundleIdentifier]) {
         [self postDisableNotificationForTarget: application.bundleIdentifier];
     }
     application.state = LRApplicationModelStateDisabled;
@@ -131,7 +131,7 @@ static NSString * const LRInjectionLocatrDisableNotification =
 {
     NSRunningApplication *application = notification.userInfo[NSWorkspaceApplicationKey];
     if (!application) return;
-    /* Move application to pendings */
+    /* Move application to the pending group */
     if ([self.injectees containsObject: application.bundleIdentifier]) {
         [self.pendingInjectees addObject: application.bundleIdentifier];
         [self.injectees removeObject: application.bundleIdentifier];
@@ -202,6 +202,7 @@ static NSString * const LRInjectionLocatrDisableNotification =
 {
     CLLocation *currentLocation = [[LRLocationDog sharedDog] currentLocation];
     if (!currentLocation) return;
+
     NSDictionary *locationPrefs = @{
         @"location": [currentLocation lr_coordinatesString]
     };

@@ -50,13 +50,12 @@
     openPanelIsShown = YES;
 
     NSOpenPanel *panel = [NSOpenPanel openPanel];
-    [panel setDelegate: self];
     [panel setTitle: NSLocalizedString(@"Choose one or more applications", @"Open panel > Title")];
     [panel setPrompt: NSLocalizedString(@"Add", "Open panel > OK button")];
-    NSString *applicationsDirectory = NSSearchPathForDirectoriesInDomains(NSApplicationDirectory,
-                                                                          NSSystemDomainMask,
-                                                                          YES)[0];
-    [panel setDirectoryURL: [NSURL URLWithString: applicationsDirectory]];
+    NSArray *suggestedApplicationsDirs = NSSearchPathForDirectoriesInDomains(NSApplicationDirectory,
+                                                                             NSSystemDomainMask,
+                                                                             YES);
+    [panel setDirectoryURL: [NSURL URLWithString: [suggestedApplicationsDirs firstObject]]];
     [panel setShowsHiddenFiles: NO];
     [panel setAllowsOtherFileTypes: NO];
     [panel setAllowedFileTypes: @[@"app"]];
@@ -68,13 +67,6 @@
         openPanelIsShown = NO;
     }];
 }
-
-- (BOOL)panel:(id)sender shouldEnableURL:(NSURL *)url
-{
-    /* We can also check here if this application has a valid bundle */
-    return  YES;
-}
-
 
 - (void)locationDidChange: (NSNotification *)notification
 {
@@ -102,7 +94,7 @@
         button;
     });
 
-#if  __MAC_OS_X_VERSION_MAX_ALLOWED < 101000
+#if __MAC_OS_X_VERSION_MAX_ALLOWED < 101000
 #error Use 10.10 SDK to compile this code
 #endif
     if (NSClassFromString(@"NSTitlebarAccessoryViewController")) {

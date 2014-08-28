@@ -10,7 +10,7 @@
 
 @class LRAppsListManager;
 
-@interface LRMainWindowController : NSWindowController <NSOpenSavePanelDelegate>
+@interface LRMainWindowController : NSWindowController
 
 @property (weak) IBOutlet NSButton *buttomLocationButton;
 @property (strong) IBOutlet LRAppsListManager *appsListManager;
