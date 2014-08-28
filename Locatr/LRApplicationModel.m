@@ -18,10 +18,12 @@
 
 - (instancetype)initWithApplicationURL: (NSURL *)url state: (LRApplicationModelState)state
 {
+    NSBundle *bundle = [NSBundle bundleWithURL: url];
+    if (bundle.bundleIdentifier.length == 0) return nil;
+
     if ((self = [super init])) {
         _URL = url;
         _state = state;
-        NSBundle *bundle = [NSBundle bundleWithURL: self.URL];
         _bundleIdentifier = bundle.bundleIdentifier;
         /* Look up a localized application name */
         _title = [bundle objectForInfoDictionaryKey: @"CFBundleDisplayName"];

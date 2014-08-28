@@ -60,6 +60,7 @@ static NSString * const LRApplicationsListDefaulsKey = @"LRApplicationsListDefau
     [self.applicationsListAccessLock lock];
     [urls enumerateObjectsUsingBlock: ^(NSURL *url, NSUInteger idx, BOOL *stop) {
         LRApplicationModel *model = [LRApplicationModel modelForApplicationAtURL: url];
+        if (!model) return;
         NSUInteger duplicateIdx = [self.applications indexOfObjectPassingTest:
                           ^BOOL(LRApplicationModel *obj, NSUInteger idx_internal, BOOL *stop_internal) {
             return [obj.bundleIdentifier isEqualToString: model.bundleIdentifier];
