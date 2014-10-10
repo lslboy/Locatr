@@ -25,16 +25,26 @@
         _URL = url;
         _state = state;
         _bundleIdentifier = bundle.bundleIdentifier;
-        /* Look up a localized application name */
-        _title = [bundle objectForInfoDictionaryKey: @"CFBundleDisplayName"];
-        if (!_title) {
-            /* then a regular name */
-            _title = [bundle objectForInfoDictionaryKey: @"CFBundleName"];
+        /* Look up a localized application name first */
+        CFStringRef str;
+        OSStatus err = LSCopyDisplayNameForURL((__bridge CFURLRef)_URL, &str);
+        if (err == noErr) {
+            _title = CFBridgingRelease(str);
+            /* LSCopyDisplayNameForURL() may return a string with .app suffix */
+            _title = [_title stringByDeletingPathExtension];
+        } else {
+            /* then use a default display name info dictionary key */
+            _title = [bundle objectForInfoDictionaryKey: @"CFBundleDisplayName"];
             if (!_title) {
-                /* and fallback to a file name */
-                _title = [[url.absoluteString lastPathComponent] stringByDeletingPathExtension];
+                /* then a regular name */
+                _title = [bundle objectForInfoDictionaryKey: @"CFBundleName"];
+                if (!_title) {
+                    /* and fallback to a file name */
+                    _title = [[url.absoluteString lastPathComponent] stringByDeletingPathExtension];
+                }
             }
         }
+
         _icon = [[NSWorkspace sharedWorkspace] iconForFile: url.path];
     }
 
