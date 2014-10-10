@@ -15,8 +15,9 @@
 
 - (IBAction)reportIssue:(id)sender
 {
-    NSString *subject = [NSString stringWithFormat: @"Locatr (%@): new issue detected!",
-                         [[NSBundle mainBundle] infoDictionary][@"CFBundleShortVersionString"]];
+    NSString *subject = [NSString stringWithFormat: @"Locatr (%@, build %@): new issue detected!",
+                         [[NSBundle mainBundle] infoDictionary][@"CFBundleShortVersionString"],
+                         [[NSBundle mainBundle] infoDictionary][@"CFBundleVersion"]];
 
     NSString *body = @"Hello!\nI've came across an issue in Locatr. Here it is.\n\n"
     @"WHAT HAPPEND:\n{{ Provide a descriptive summary of the issue }}\n\n"
@@ -31,8 +32,10 @@
 
 - (IBAction)sentFeatureRequest:(id)sender
 {
-    NSString *subject = [NSString stringWithFormat: @"Locatr (%@): I have a great idea!",
-                         [[NSBundle mainBundle] infoDictionary][@"CFBundleShortVersionString"]];
+    NSString *subject = [NSString stringWithFormat: @"Locatr (%@, build %@): I have a great idea!",
+                         [[NSBundle mainBundle] infoDictionary][@"CFBundleShortVersionString"],
+                         [[NSBundle mainBundle] infoDictionary][@"CFBundleVersion"]];
+
     NSString *body = @"Hello!\nI have an idea about Locatr. Here is it:\n\n"
     @"{{ Please, describe you idea here. Thank you! (^,^) }}";
     NSString *mailto = [[NSString stringWithFormat:
