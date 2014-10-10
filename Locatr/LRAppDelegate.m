@@ -17,13 +17,19 @@
 
 - (void)applicationDidFinishLaunching: (NSNotification *)notification
 {
-    /* Localize Main Menu custom items */
+    /* Localize File menu items */
     NSMenuItem *fileMenu = [[NSApp menu] itemWithTitle: @"File"];
     NSMenuItem *addApplicationItem = [[fileMenu submenu] itemWithTitle: @"[add_app]"];
-    if (addApplicationItem) {
-        [addApplicationItem setTitle: NSLocalizedString(@"Add application…",
-                                                        @"MainMenu > File > Add application item")];
-    }
+    addApplicationItem.title = NSLocalizedString(@"Add application…", @"MainMenu > File > Add application item");
+    /* Localize Help menu items */
+    NSMenuItem *helpMenu = [[NSApp menu] itemWithTitle: @"Help"];
+    NSMenuItem *reportItem = [helpMenu.submenu itemWithTitle: @"[report_issue]"];
+    NSMenuItem *suggestionItem = [helpMenu.submenu itemWithTitle: @"[send_suggestion]"];
+    NSMenuItem *websiteItem = [helpMenu.submenu itemWithTitle: @"[open_locatr_website]"];
+
+    reportItem.title = NSLocalizedString(@"Report an issue", @"MainMenu > Help > menu item");
+    suggestionItem.title = NSLocalizedString(@"Send suggestion", @"MainMenu > Help > menu item");
+    websiteItem.title = NSLocalizedString(@"Open Locatr website", @"MainMenu > Help > menu item");
 }
 
 - (NSMenu *)applicationDockMenu: (NSApplication *)sender
