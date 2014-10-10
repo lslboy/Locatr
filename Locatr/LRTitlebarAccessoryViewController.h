@@ -9,7 +9,7 @@
 #import <Cocoa/Cocoa.h>
 
 /**
- * LRTitlebarAccessoryViewController header file notes that we shouldn't override the -view
+ * NSTitlebarAccessoryViewController header file notes that we shouldn't override the -view
  * property directly, so let's use custom subclass and override -loadView method instead.
  */
 @interface LRTitlebarAccessoryViewController : NSTitlebarAccessoryViewController

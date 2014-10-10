@@ -15,7 +15,7 @@
 
 #pragma mark - NSApplicationDelegate's
 
-- (void)applicationDidFinishLaunching:(NSNotification *)notification
+- (void)applicationDidFinishLaunching: (NSNotification *)notification
 {
     /* Localize Main Menu custom items */
     NSMenuItem *fileMenu = [[NSApp menu] itemWithTitle: @"File"];
