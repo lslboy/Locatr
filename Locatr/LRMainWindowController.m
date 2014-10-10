@@ -68,6 +68,12 @@
     }];
 }
 
+- (void)showWindowWithActivatedPopover: (id)sender
+{
+    [self.window makeKeyAndOrderFront: sender];
+    [self.buttomLocationButton performClick: sender];
+}
+
 - (void)locationDidChange: (NSNotification *)notification
 {
     dispatch_async(dispatch_get_main_queue(), ^{

@@ -15,6 +15,7 @@
 @property (weak) IBOutlet NSButton *buttomLocationButton;
 @property (strong) IBOutlet LRAppsListManager *appsListManager;
 
+- (void)showWindowWithActivatedPopover: (id)sender;
 - (IBAction)addApplicationToList: (id)sender;
 
 @end
