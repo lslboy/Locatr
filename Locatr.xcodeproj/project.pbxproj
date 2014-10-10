@@ -12,6 +12,7 @@
 		0A03CF0319899717007D08E3 /* LRApplicationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A03CEFF19899717007D08E3 /* LRApplicationModel.m */; };
 		0A03CF0419899717007D08E3 /* LRAppsListManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A03CF0119899717007D08E3 /* LRAppsListManager.m */; };
 		0A0DD095198E4E6D0093B432 /* CLLocation+Description.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A0DD094198E4E6D0093B432 /* CLLocation+Description.m */; };
+		0A4C4D6319E7EFFB0078C9C3 /* LRAppDelegate+Feedback.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A4C4D6219E7EFFB0078C9C3 /* LRAppDelegate+Feedback.m */; };
 		0A528426199122B4004E12F8 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AAC665F19899512005B3B96 /* Cocoa.framework */; };
 		0A52842C199122B4004E12F8 /* payload.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A52842B199122B4004E12F8 /* payload.m */; };
 		0A52844D19912600004E12F8 /* libunicorn.dylib in Copy Payload */ = {isa = PBXBuildFile; fileRef = 0A528425199122B4004E12F8 /* libunicorn.dylib */; };
@@ -140,6 +141,8 @@
 		0A0DD092198E378B0093B432 /* LRLocationNotifications.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LRLocationNotifications.h; sourceTree = "<group>"; };
 		0A0DD093198E4E6D0093B432 /* CLLocation+Description.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CLLocation+Description.h"; sourceTree = "<group>"; };
 		0A0DD094198E4E6D0093B432 /* CLLocation+Description.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CLLocation+Description.m"; sourceTree = "<group>"; };
+		0A4C4D6119E7EFFB0078C9C3 /* LRAppDelegate+Feedback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "LRAppDelegate+Feedback.h"; sourceTree = "<group>"; };
+		0A4C4D6219E7EFFB0078C9C3 /* LRAppDelegate+Feedback.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "LRAppDelegate+Feedback.m"; sourceTree = "<group>"; };
 		0A528425199122B4004E12F8 /* libunicorn.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libunicorn.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A528429199122B4004E12F8 /* payload-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "payload-Prefix.pch"; sourceTree = "<group>"; };
 		0A52842A199122B4004E12F8 /* payload.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = payload.h; sourceTree = "<group>"; };
@@ -209,6 +212,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0A4C4D6919E7F2F00078C9C3 /* App Delegate */ = {
+			isa = PBXGroup;
+			children = (
+				0AAC667119899512005B3B96 /* LRAppDelegate.h */,
+				0AAC667219899512005B3B96 /* LRAppDelegate.m */,
+				0A4C4D6119E7EFFB0078C9C3 /* LRAppDelegate+Feedback.h */,
+				0A4C4D6219E7EFFB0078C9C3 /* LRAppDelegate+Feedback.m */,
+			);
+			name = "App Delegate";
+			sourceTree = "<group>";
+		};
 		0A528427199122B4004E12F8 /* payload */ = {
 			isa = PBXGroup;
 			children = (
@@ -336,9 +350,8 @@
 		0AAC666519899512005B3B96 /* Locatr */ = {
 			isa = PBXGroup;
 			children = (
-				0AAC667119899512005B3B96 /* LRAppDelegate.h */,
-				0AAC667219899512005B3B96 /* LRAppDelegate.m */,
 				0AAC667419899512005B3B96 /* UIInterface.xib */,
+				0A4C4D6919E7F2F00078C9C3 /* App Delegate */,
 				0AA425B2199A4475004F65D8 /* Main Window */,
 				0A966EB7198BC6E40032531C /* Applications List */,
 				0AF7683D198CC696009C73FC /* Location Manager */,
@@ -600,6 +613,7 @@
 				0A03CF0219899717007D08E3 /* LRApplicationCellView.m in Sources */,
 				0AA425BA199A44C3004F65D8 /* LRTitlebarAccessoryViewController.m in Sources */,
 				0A966EBF198C1D4C0032531C /* LRLocationPopoverViewController.m in Sources */,
+				0A4C4D6319E7EFFB0078C9C3 /* LRAppDelegate+Feedback.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
