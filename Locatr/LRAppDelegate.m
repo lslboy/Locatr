@@ -26,14 +26,33 @@
     }
 }
 
-- (BOOL)applicationShouldTerminateAfterLastWindowClosed:(NSApplication *)sender
+- (NSMenu *)applicationDockMenu: (NSApplication *)sender
+{
+    NSMenu *dockMenu = [NSMenu new];
+    /* Set new location (show main window and activate the location popover) */
+    NSMenuItem *setNewLocation = [NSMenuItem new];
+    setNewLocation.title = NSLocalizedString(@"Set new location…", @"Dock menu > menu item");
+    setNewLocation.target = self.mainWindowController;
+    setNewLocation.action = @selector(showWindowWithActivatedPopover:);
+    [dockMenu addItem: setNewLocation];
+    /* Restore original location state */
+    NSMenuItem *restoreOriginalState = [NSMenuItem new];
+    restoreOriginalState.title = NSLocalizedString(@"Restore original location", @"Dock menu > menu item");
+    restoreOriginalState.target = self.mainWindowController.appsListManager;
+    restoreOriginalState.action = @selector(disableAllLocationChanges:);
+    [dockMenu addItem: restoreOriginalState];
+
+    return dockMenu;
+}
+
+- (BOOL)applicationShouldTerminateAfterLastWindowClosed: (NSApplication *)sender
 {
     return NO;
 }
 
 - (void)applicationWillTerminate: (NSNotification *)notification
 {
-    [self.mainWindowController.appsListManager disableAllLocationChanges];
+    [self.mainWindowController.appsListManager disableAllLocationChanges: self];
 }
 
 - (void)applicationDidBecomeActive: (NSNotification *)notification
