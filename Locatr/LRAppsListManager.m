@@ -6,6 +6,7 @@
 //  Copyright (c) 2014 rodionovd. All rights reserved.
 //
 #import "LRInjector.h"
+#import "LRLocationDog.h"
 #import "LRAppsListManager.h"
 #import "LRApplicationModel.h"
 #import "LRApplicationCellView.h"
@@ -60,6 +61,7 @@ static NSString * const LRApplicationsListDefaulsKey = @"LRApplicationsListDefau
     [self.applicationsListAccessLock lock];
     [urls enumerateObjectsUsingBlock: ^(NSURL *url, NSUInteger idx, BOOL *stop) {
         LRApplicationModel *model = [LRApplicationModel modelForApplicationAtURL: url];
+        if (!model) return;
         NSUInteger duplicateIdx = [self.applications indexOfObjectPassingTest:
                           ^BOOL(LRApplicationModel *obj, NSUInteger idx_internal, BOOL *stop_internal) {
             return [obj.bundleIdentifier isEqualToString: model.bundleIdentifier];
@@ -78,12 +80,17 @@ static NSString * const LRApplicationsListDefaulsKey = @"LRApplicationsListDefau
     });
 }
 
-- (void)disableAllLocationChanges
+- (void)disableAllLocationChanges: (id)sender
 {
-    [self saveApplicationsList];
+    [[LRLocationDog sharedDog] restoreOriginalLocationWithSuccess: nil failure:^(NSError *error) {
+        NSLog(@"[%d] %s: Could not restore original user location", __LINE__, __PRETTY_FUNCTION__);
+    }];
     [self.applications enumerateObjectsUsingBlock: ^(LRApplicationModel *model, NSUInteger idx, BOOL *stop) {
         [[LRInjector sharedInjector] disableInjectionForApplication: model];
     }];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.tableView reloadData];
+    });
 }
 
 #pragma mark - UI Actions
