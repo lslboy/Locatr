@@ -95,19 +95,19 @@ static NSString * const LRInjectionLocatrDisableNotification =
      }];
 }
 
-/** Well we don't unload the pyload library there, but just post a "Disable» notification */
+/** Well we don't unload the pyload library there, but just post a "Disable" notification */
 - (void)disableInjectionForApplication: (inout LRApplicationModel *)application
 {
-    if (!application) {
-        assert(application);
-        return;
-    }
-    if (![self.pendingInjectees containsObject: application.bundleIdentifier]) {
-        [self postDisableNotificationForTarget: application.bundleIdentifier];
-    }
+    NSAssert(application != nil, @"application paramenter must not be nil");
+
+    NSString *bundleID = application.bundleIdentifier;
     application.state = LRApplicationModelStateDisabled;
-    [self.injectees removeObject: application.bundleIdentifier];
-    [self.pendingInjectees removeObject: application.bundleIdentifier];
+    
+    if ([self.pendingInjectees containsObject: bundleID]) {
+        [self.pendingInjectees removeObject: bundleID];
+    } else if ([self.injectees containsObject: bundleID]) {
+        [self postDisableNotificationForTarget: bundleID];
+    }
 }
 
 #pragma mark - NSWorkspace Notifications
@@ -122,8 +122,9 @@ static NSString * const LRInjectionLocatrDisableNotification =
                                         completion:
          ^(NSError *error) {
              [self postCoordinatesDidChangeGlobalNotification];
+             [self.injectees addObject: application.bundleIdentifier];
+             [self.pendingInjectees removeObject: application.bundleIdentifier];
          }];
-        [self.pendingInjectees removeObject: application.bundleIdentifier];
     }
 }
 
