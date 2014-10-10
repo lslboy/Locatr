@@ -212,6 +212,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0A4C4D6919E7F2F00078C9C3 /* App Delegate */ = {
+			isa = PBXGroup;
+			children = (
+				0AAC667119899512005B3B96 /* LRAppDelegate.h */,
+				0AAC667219899512005B3B96 /* LRAppDelegate.m */,
+				0A4C4D6119E7EFFB0078C9C3 /* LRAppDelegate+Feedback.h */,
+				0A4C4D6219E7EFFB0078C9C3 /* LRAppDelegate+Feedback.m */,
+			);
+			name = "App Delegate";
+			sourceTree = "<group>";
+		};
 		0A528427199122B4004E12F8 /* payload */ = {
 			isa = PBXGroup;
 			children = (
@@ -339,11 +350,8 @@
 		0AAC666519899512005B3B96 /* Locatr */ = {
 			isa = PBXGroup;
 			children = (
-				0AAC667119899512005B3B96 /* LRAppDelegate.h */,
-				0AAC667219899512005B3B96 /* LRAppDelegate.m */,
-				0A4C4D6119E7EFFB0078C9C3 /* LRAppDelegate+Feedback.h */,
-				0A4C4D6219E7EFFB0078C9C3 /* LRAppDelegate+Feedback.m */,
 				0AAC667419899512005B3B96 /* UIInterface.xib */,
+				0A4C4D6919E7F2F00078C9C3 /* App Delegate */,
 				0AA425B2199A4475004F65D8 /* Main Window */,
 				0A966EB7198BC6E40032531C /* Applications List */,
 				0AF7683D198CC696009C73FC /* Location Manager */,
